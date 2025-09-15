@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrizll Chat UI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="modal fade" id="onboardingModal" tabindex="-1" aria-labelledby="onboardingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="onboardingModalLabel">Welcome to Thrizll!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Our goal is to help you build stronger connections by supporting you during moments of hesitation. We analyze micro-interactions like typing speed and backspace usage to infer emotional states. When we detect uncertainty, we'll show you a gentle animation or a motivational message.</p>
+                    <p>This is completely optional. You can adjust these settings at any time.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Opt Out</button>
+                    <button type="button" class="btn btn-primary" id="onboardingConsentBtn">I Consent</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-container d-flex flex-column vh-100">
+
+        <header class="chat-header p-3 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-back me-2" aria-label="Back"><i class="fas fa-arrow-left"></i></button>
+                <img src="avatar-partner.png" alt="Partner's Avatar" class="avatar-sm rounded-circle me-3">
+                <span class="partner-name">Alex Smith</span>
+            </div>
+            <div class="options-menu">
+                <button class="btn btn-options" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Options Menu"><i class="fas fa-ellipsis-v"></i></button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#settingsModal">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">View Profile</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="confidence-bar">
+            <div class="confidence-progress" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <div class="chat-window flex-grow-1 p-3">
+            </div>
+
+        <div id="microInteractionLayer" class="micro-interaction-layer">
+            <div id="popup-message" class="popup-message"></div>
+            </div>
+
+        <footer class="composer-area p-3">
+            <div class="d-flex align-items-end">
+                <button class="btn btn-icon me-2" aria-label="Add Emoji"><i class="fas fa-smile"></i></button>
+                <button class="btn btn-icon me-2" aria-label="Add Attachment"><i class="fas fa-paperclip"></i></button>
+                <div class="input-box-container flex-grow-1">
+                    <textarea id="messageInput" class="form-control" rows="1" placeholder="Type a message..."></textarea>
+                </div>
+                <button id="sendBtn" class="btn btn-send ms-2" aria-label="Send Message"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel">Thrizll Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="toggleEncouragements" checked>
+                        <label class="form-check-label" for="toggleEncouragements">Enable Encouragements</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sensitivitySlider" class="form-label">Sensitivity</label>
+                        <input type="range" class="form-range" id="sensitivitySlider" min="0" max="100" value="50">
+                    </div>
+                    <div class="mb-3">
+                        <label for="themeSelector" class="form-label">Popup Theme</label>
+                        <select id="themeSelector" class="form-select">
+                            <option value="butterflies">Butterflies</option>
+                            <option value="stars">Stars</option>
+                            <option value="hearts">Hearts</option>
+                        </select>
+                    </div>
+                    <p class="privacy-note">
+                        <i class="fas fa-lock"></i> Privacy Note: Your messages are only visible to you and the person you're chatting with. Keystroke data is used locally to power encouragement features and is not stored or shared.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
