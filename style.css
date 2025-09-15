@@ -1,0 +1,225 @@
+:root {
+    --primary-color: #ffb6c1; /* Light Pink */
+    --secondary-color: #87ceeb; /* Sky Blue */
+    --background-color: #f7f3f9; /* Off-white/light grey */
+    --chat-bubble-bg-self: #ffe6f0; /* Lighter Pink */
+    --chat-bubble-bg-other: #e6f0ff; /* Lighter Blue */
+    --text-color: #4a4a4a;
+    --border-radius: 20px;
+    --composer-bg: #ffffff;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.chat-container {
+    max-width: 600px;
+    margin: auto;
+    background: var(--composer-bg);
+    border-radius: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Header Bar */
+.chat-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+}
+
+.partner-name {
+    font-weight: 600;
+}
+
+.btn-back, .btn-options {
+    color: white;
+    border: none;
+}
+
+/* Confidence Meter */
+.confidence-bar {
+    height: 4px;
+    background-color: #e0e0e0;
+}
+
+.confidence-progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 50%; /* Initial value */
+    transition: width 0.3s ease-in-out;
+}
+
+/* Chat Window */
+.chat-window {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    display: flex;
+}
+
+.message.self {
+    justify-content: flex-end;
+}
+
+.message.other {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    padding: 12px 18px;
+    border-radius: var(--border-radius);
+    max-width: 80%;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.message.self .message-bubble {
+    background-color: var(--chat-bubble-bg-self);
+    color: var(--text-color);
+    border-bottom-right-radius: 5px;
+}
+
+.message.other .message-bubble {
+    background-color: var(--chat-bubble-bg-other);
+    color: var(--text-color);
+    border-bottom-left-radius: 5px;
+}
+
+.timestamp {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 5px;
+}
+
+/* Composer Area */
+.composer-area {
+    background-color: var(--composer-bg);
+    border-top: 1px solid #f0f0f0;
+}
+
+.input-box-container {
+    position: relative;
+}
+
+#messageInput {
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+    border: 1px solid #e0e0e0;
+    resize: none;
+    overflow-y: hidden;
+    padding: 10px 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+#messageInput:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 182, 193, 0.25);
+    border-color: var(--primary-color);
+}
+
+.btn-icon {
+    font-size: 1.25rem;
+    color: #999;
+}
+
+.btn-send {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-send:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* Micro-interaction Layer & Popups */
+.micro-interaction-layer {
+    position: absolute;
+    bottom: 80px; /* Above the composer */
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 10px;
+}
+
+.popup-message {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+    pointer-events: auto;
+}
+
+.popup-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.butterfly-animation {
+    /* CSS for butterfly/star/heart animations */
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    animation: floatUp 2s forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50px) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(1.2);
+    }
+}
+
+/* Settings Modal */
+.modal-content {
+    border-radius: 20px;
+    border: none;
+}
+
+.privacy-note {
+    font-size: 0.8rem;
+    color: #888;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 10px;
+}
